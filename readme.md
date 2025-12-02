@@ -11,7 +11,7 @@ Application Symfony qui reproduit une expérience « Netflix » : catalogue de f
 1. **Cloner le dépôt**
    ```bash
    git clone le projet 
-   cd netflix
+   cd HDFID-Stream/
    ```
 
 2. **Configurer la clé RapidAPI**
