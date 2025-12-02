@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Séries {% endblock %}
+
+{% block body %}
+<div class="min-h-screen ">
+    <twig:Header currentRoute="app_series" />
+
+    <section class="content-section">
+        <h2 class="section-title">Séries populaires</h2>
+        <div class="carousel">
+            {% for serie in popularSeries %}
+            <twig:MovieCard :movie="serie" />
+            {% else %}
+            <p class="no-content">Aucune série disponible.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Séries les mieux notées</h2>
+        <div class="carousel">
+            {% for serie in topRatedSeries %}
+            <twig:MovieCard :movie="serie" />
+            {% else %}
+            <p class="no-content">Aucune série disponible.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Séries à venir</h2>
+        <div class="carousel">
+            {% for serie in upcomingSeries %}
+            <twig:MovieCard :movie="serie" />
+            {% else %}
+            <p class="no-content">Aucune série à venir.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

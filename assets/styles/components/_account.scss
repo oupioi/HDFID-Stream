@@ -1,0 +1,143 @@
+.account-page {
+    @include glass-page;
+}
+
+.account-background {
+    @include glass-background;
+}
+
+.account-overlay {
+    @include glass-overlay;
+}
+
+.account-shell {
+    @apply flex flex-col gap-8;
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 5rem 1.5rem 6rem;
+}
+
+.account-hero {
+    @apply flex flex-wrap items-center gap-8;
+}
+
+.account-avatar {
+    @include glass-avatar(96px);
+
+    .material-icons {
+        @apply text-4xl;
+    }
+}
+
+.account-pill-list {
+    @apply flex flex-wrap gap-3 mt-4;
+}
+
+.account-pill-list .pill {
+    @include glass-pill;
+}
+
+.account-hero h1 {
+    @apply text-3xl md:text-4xl font-bold mb-2;
+}
+
+.account-hero p {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.account-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.account-card {
+    @include glass-panel(2rem);
+}
+
+.account-card::before {
+    @include glass-panel-outline;
+}
+
+.account-card__head {
+    @apply flex flex-col gap-2 mb-6;
+}
+
+.account-card__head h2 {
+    @apply text-2xl font-semibold;
+}
+
+.account-form {
+    @apply flex flex-col gap-5;
+}
+
+.form-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.form-group label {
+    @apply text-sm font-medium mb-2;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.form-group input {
+    @include glass-input;
+}
+
+.form-group input:focus {
+    @include glass-input-focus;
+}
+
+.account-form ul {
+    @apply list-none p-0 m-0;
+
+    li {
+        @apply text-sm mt-1;
+        color: #ff9b9b;
+    }
+}
+
+.form-actions {
+    @apply mt-6;
+}
+
+.account-button {
+    @include glass-button;
+}
+
+.account-button:hover {
+    @include glass-button-hover;
+}
+
+.account-info-list {
+    @apply list-none p-0 m-0 flex flex-col gap-3;
+}
+
+.account-info-list li {
+    @apply flex justify-between gap-4 pb-3;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.account-info-list li:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: rgba(255, 255, 255, 0.6);
+    @apply text-sm;
+}
+
+.info-value {
+    @apply text-base font-medium;
+}
+
+@media (max-width: 640px) {
+    .account-card {
+        @apply rounded-[24px];
+        padding: 1.5rem;
+    }
+
+    .account-info-list li {
+        @apply flex-col items-start;
+    }
+}

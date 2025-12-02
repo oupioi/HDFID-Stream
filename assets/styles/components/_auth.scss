@@ -1,0 +1,106 @@
+.auth-page {
+    @include glass-page;
+}
+
+.auth-background {
+    @include glass-background;
+}
+
+.auth-overlay {
+    @include glass-overlay;
+}
+
+.auth-shell {
+    @apply min-h-screen flex items-center justify-center;
+    padding: 4rem 1.5rem;
+}
+
+.auth-card {
+    width: min(440px, 100%);
+    @include glass-panel(2.25rem);
+}
+
+.auth-card::before {
+    @include glass-panel-outline;
+}
+
+.auth-card__header {
+    @apply mb-8;
+}
+
+.auth-card__header h1 {
+    @apply text-[2.25rem] font-bold mt-1 mb-3 tracking-[-0.02em];
+}
+
+.auth-kicker {
+    @apply uppercase tracking-[0.3em] text-[0.75rem] mb-2;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.auth-subtitle {
+    @apply text-[0.95rem];
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-alert {
+    @include glass-alert-base;
+    @apply mb-4;
+}
+
+.auth-alert--error {
+    @include glass-alert(#ff9b9b, rgba(229, 9, 20, 0.12), rgba(229, 9, 20, 0.4));
+}
+
+.auth-alert--success {
+    @include glass-alert(#6ee7b7, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.4));
+}
+
+.auth-form {
+    @apply flex flex-col gap-4;
+}
+
+.auth-form__row label {
+    @apply text-[0.9rem] mb-1;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.auth-form__row input,
+.auth-form__row input[type="password"] {
+    @include glass-input;
+}
+
+.auth-form__row input:focus {
+    @include glass-input-focus;
+}
+
+.auth-form__actions {
+    @apply mt-2;
+}
+
+.auth-button {
+    @include glass-button;
+}
+
+.auth-button:hover {
+    @include glass-button-hover;
+}
+
+.auth-switch {
+    @apply text-center mt-6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-switch a {
+    @apply text-white font-semibold;
+}
+
+@media (max-width: 640px) {
+    .auth-card {
+        @apply rounded-[24px];
+        padding: 1.75rem;
+    }
+
+    .auth-card__header h1 {
+        @apply text-[1.8rem];
+    }
+}

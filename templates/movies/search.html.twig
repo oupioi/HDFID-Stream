@@ -1,0 +1,11 @@
+<p>Recherche de films pour : "{{ query }}"</p>
+
+{% if results is empty %}
+    <p>Aucun résultat trouvé.</p>
+{% else %}
+    <ul>
+        {% for movie in results %}
+            <li>{{ movie.titleText.text }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}

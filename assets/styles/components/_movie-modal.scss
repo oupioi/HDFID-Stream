@@ -1,0 +1,276 @@
+.movie-modal-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  @apply opacity-0 pointer-events-none;
+  @apply transition-opacity duration-300 ease-out;
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(0, 0, 0, 0.6);
+
+  &.active {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+.movie-modal {
+  @apply relative flex overflow-hidden;
+  @apply opacity-0 scale-95;
+  @apply transition-all duration-500 ease-out;
+  margin: 21px;
+  max-width: calc(100vw - 42px);
+  max-height: calc(100vh - 42px);
+  width: 1100px;
+  height: 600px;
+  border-radius: 24px;
+  
+  // Liquid Glass effect
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+
+  .movie-modal-overlay.active & {
+    @apply opacity-100 scale-100;
+    transition-delay: 0.1s;
+  }
+
+  // Close button
+  .modal-close {
+    @apply absolute top-4 right-4 z-20;
+    @apply w-10 h-10 flex items-center justify-center;
+    @apply text-white/80 hover:text-white;
+    @apply transition-all duration-200;
+    @apply cursor-pointer;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    svg {
+      @apply w-5 h-5;
+    }
+  }
+}
+
+// Left side - Trailer
+.modal-trailer {
+  @apply relative flex-shrink-0 flex items-center justify-center;
+  width: 55%;
+  
+  // Liquid glass container for video
+  .trailer-container {
+    @apply relative w-full h-full flex items-center justify-center p-6;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(40px) saturate(150%);
+
+    .trailer-frame {
+      @apply w-full rounded-2xl overflow-hidden;
+      aspect-ratio: 16/9;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+      
+      iframe {
+        @apply w-full h-full;
+      }
+    }
+
+    // Placeholder when no trailer
+    .trailer-placeholder {
+      @apply w-full flex flex-col items-center justify-center;
+      @apply text-white/50;
+      aspect-ratio: 16/9;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      svg {
+        @apply w-16 h-16 mb-4 opacity-50;
+      }
+
+      span {
+        @apply text-sm;
+      }
+    }
+  }
+
+  // Reflection effect
+  &::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0;
+    height: 40%;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+}
+
+// Right side - Info
+.modal-info {
+  @apply relative flex-1 flex flex-col justify-center;
+  @apply p-8 overflow-hidden;
+
+  // Background poster with blur
+  .info-background {
+    @apply absolute inset-0;
+    
+    img {
+      @apply w-full h-full object-cover;
+      filter: blur(30px) brightness(0.4) saturate(120%);
+      transform: scale(1.2);
+    }
+
+    // Gradient overlay
+    &::after {
+      content: '';
+      @apply absolute inset-0;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+    }
+  }
+
+  // Content overlay
+  .info-content {
+    @apply relative z-10;
+
+    // Liquid glass card
+    .info-card {
+      @apply p-6 rounded-2xl;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .movie-title {
+      @apply text-3xl font-bold text-white mb-4;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .movie-meta {
+      @apply flex items-center gap-4 mb-6;
+      @apply text-sm text-white/80;
+
+      .meta-item {
+        @apply flex items-center gap-1 px-3 py-1 rounded-full;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        &.rating {
+          @apply text-yellow-400;
+        }
+      }
+    }
+
+    .movie-genres {
+      @apply flex flex-wrap gap-2 mb-6;
+
+      .genre-tag {
+        @apply px-3 py-1 text-xs rounded-full;
+        @apply text-white/90;
+        background: rgba(229, 9, 20, 0.6);
+        border: 1px solid rgba(229, 9, 20, 0.3);
+      }
+    }
+
+    .movie-description {
+      @apply text-white/80 text-sm leading-relaxed;
+      @apply max-h-32 overflow-y-auto;
+      
+      // Custom scrollbar
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+      }
+    }
+
+    .movie-actions {
+      @apply flex gap-3 mt-6;
+
+      .action-btn {
+        @apply flex items-center gap-2 px-6 py-3 rounded-full;
+        @apply text-sm font-semibold;
+        @apply transition-all duration-200;
+        @apply cursor-pointer;
+
+        &.primary {
+          @apply bg-white text-black;
+          box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+
+          &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(255, 255, 255, 0.4);
+          }
+        }
+
+        &.secondary {
+          background: rgba(255, 255, 255, 0.2);
+          @apply text-white;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.3);
+          }
+        }
+
+        svg {
+          @apply w-5 h-5;
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .movie-modal {
+    @apply flex-col;
+    height: auto;
+    max-height: calc(100vh - 42px);
+    overflow-y: auto;
+  }
+
+  .modal-trailer {
+    width: 100%;
+    height: auto;
+  }
+
+  .modal-info {
+    @apply p-6;
+  }
+}

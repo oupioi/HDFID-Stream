@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion {% endblock %}
+
+{% block body %}
+<div class="auth-page">
+    <div class="auth-background" aria-hidden="true"></div>
+    <div class="auth-overlay">
+        <div class="auth-shell">
+            <div class="auth-card">
+                <div class="auth-card__header">
+                    <img src="https://www.hautsdefrance-id.fr/wp-content/uploads/2025/02/logo_hdfid_blue.svg"
+                        alt="Logo ID" class="auth-logo" width="39" height="39" />
+                    <p class="auth-subtitle">Connectez-vous pour continuer votre expérience ciné & séries.</p>
+                </div>
+
+                {% if error %}
+                <div class="auth-alert auth-alert--error">
+                    <span class="material-icons" aria-hidden="true">error</span>
+                    <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                </div>
+                {% endif %}
+
+                {% for message in app.flashes('success') %}
+                <div class="auth-alert auth-alert--success">
+                    <span class="material-icons" aria-hidden="true">check_circle</span>
+                    <p>{{ message }}</p>
+                </div>
+                {% endfor %}
+
+                {{ form_start(loginForm, {'attr': {'class': 'auth-form'}}) }}
+                {{ form_row(loginForm.email, {'row_attr': {'class': 'auth-form__row'}}) }}
+                {{ form_row(loginForm.password, {'row_attr': {'class': 'auth-form__row'}}) }}
+
+                <div class="auth-form__actions">
+                    <button class="auth-button" type="submit">
+                        <span>Se connecter</span>
+                        <span class="material-icons" aria-hidden="true">trending_flat</span>
+                    </button>
+                </div>
+                {{ form_end(loginForm) }}
+
+                <p class="auth-switch">Nouveau sur la plateforme ? <a href="{{ path('app_register') }}">Créer un
+                        compte</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

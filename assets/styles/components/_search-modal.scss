@@ -1,0 +1,81 @@
+.search-modal {
+  @apply fixed inset-0;
+  z-index: 100;
+  background-color: rgba(20, 20, 20, 0.48);
+  backdrop-filter: blur(10px);
+  
+  &.hidden {
+    display: none;
+  }
+
+  .search-modal-content {
+    @apply max-w-4xl mx-auto mt-20;
+    background-color: rgba(20, 20, 20, 0.95);
+    @apply rounded-lg overflow-hidden;
+  }
+
+  .search-header {
+    @apply flex items-center gap-4 p-6 border-b border-white/10;
+
+    .search-modal-input {
+      @apply flex-1 bg-transparent text-white text-2xl;
+      @apply outline-none placeholder:text-white/50;
+    }
+
+    .close-btn {
+      @apply bg-transparent border-0 text-white cursor-pointer;
+      @apply transition-opacity duration-300;
+
+      &:hover {
+        @apply opacity-70;
+      }
+    }
+  }
+
+  .search-results {
+    @apply p-6 max-h-96 overflow-y-auto;
+
+    .loading,
+    .error,
+    .no-results {
+      @apply text-center text-white/70 py-8;
+    }
+
+    .search-result-card {
+      @apply flex items-start gap-4 p-4 rounded-lg;
+      @apply transition-colors duration-300;
+      background-color: rgba(255, 255, 255, 0.05);
+      @apply mb-3;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .result-poster {
+        @apply w-20 h-28 object-cover rounded flex-shrink-0;
+
+        &.placeholder {
+          @apply bg-netflix-gray flex items-center justify-center;
+          @apply text-white/50 text-xs text-center p-2;
+        }
+      }
+
+      .result-info {
+        @apply flex-1;
+
+        .result-title {
+          @apply text-white font-semibold text-lg mb-2;
+        }
+
+        .result-year,
+        .result-rating {
+          @apply text-white/70 text-sm mr-3;
+        }
+
+        .result-rating {
+          @apply text-yellow-400;
+        }
+      }
+    }
+  }
+}

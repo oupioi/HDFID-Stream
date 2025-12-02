@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class="account-page">
+    <div class="account-background" aria-hidden="true"
+        style="background-image: url('{{ asset('images/background.jpg') }}');"></div>
+    <div class="account-overlay">
+        <twig:Header currentRoute="app_account" />
+
+        <main class="account-shell">
+            <section class="account-hero">
+                <div class="account-avatar">
+                    <span class="material-icons" aria-hidden="true">person</span>
+                </div>
+                <div>
+                    <h1>Bonjour {{ user.firstName ?? user.username ?? user.email }}</h1>
+                    <p>Gérez vos informations personnelles</p>
+                    <div class="account-pill-list">
+                        <span class="pill">Membre depuis {{ user.createdAt ? user.createdAt|date('M Y') : '—' }}</span>
+                        <span class="pill">{{ user.email }}</span>
+                    </div>
+                </div>
+            </section>
+
+            {% for message in app.flashes('success') %}
+            <div class="glass-alert glass-alert--success">
+                <span class="material-icons" aria-hidden="true">check_circle</span>
+                <p>{{ message }}</p>
+            </div>
+            {% endfor %}
+
+            {% for message in app.flashes('error') %}
+            <div class="glass-alert glass-alert--error">
+                <span class="material-icons" aria-hidden="true">error</span>
+                <p>{{ message }}</p>
+            </div>
+            {% endfor %}
+
+            <section class="account-grid">
+                <article class="account-card">
+                    <div class="account-card__head">
+                        <span class="pill">Identité</span>
+                        <h2>Informations personnelles</h2>
+                    </div>
+
+                    {{ form_start(form, {'attr': {'class': 'account-form'}}) }}
+                    <div class="form-grid">
+                        <div class="form-group">
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'glass-input'}}) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_label(form.firstName) }}
+                            {{ form_widget(form.firstName, {'attr': {'class': 'glass-input'}}) }}
+                            {{ form_errors(form.firstName) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_label(form.lastName) }}
+                            {{ form_widget(form.lastName, {'attr': {'class': 'glass-input'}}) }}
+                            {{ form_errors(form.lastName) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_label(form.username) }}
+                            {{ form_widget(form.username, {'attr': {'class': 'glass-input'}}) }}
+                            {{ form_errors(form.username) }}
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="account-button">
+                            <span>Enregistrer</span>
+                            <span class="material-icons" aria-hidden="true">save</span>
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
+                </article>
+
+                <article class="account-card">
+                    <div class="account-card__head">
+                        <span class="pill">Résumé</span>
+                        <h2>Informations du compte</h2>
+                    </div>
+                    <ul class="account-info-list">
+                        <li>
+                            <span class="info-label">Adresse email</span>
+                            <span class="info-value">{{ user.email }}</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Pseudo</span>
+                            <span class="info-value">{{ user.username ?? 'Non défini' }}</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Membre depuis</span>
+                            <span class="info-value">{{ user.createdAt ? user.createdAt|date('d/m/Y') : 'N/A' }}</span>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </main>
+    </div>
+</div>
+{% endblock %}

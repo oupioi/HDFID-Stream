@@ -1,0 +1,137 @@
+@mixin glass-page {
+    @apply relative min-h-screen overflow-hidden;
+    background: #050505;
+}
+
+@mixin glass-background {
+    @apply absolute inset-0 bg-cover bg-center;
+    filter: blur(22px) saturate(130%);
+    transform: scale(1.1);
+    opacity: 0.55;
+    z-index: 0;
+}
+
+@mixin glass-overlay {
+    @apply relative min-h-screen;
+    z-index: 1;
+    background: linear-gradient(-90deg, #0050a4 0%, #000050 50%, #000050 100%);
+    backdrop-filter: blur(20px);
+}
+
+@mixin glass-shell($padding-y: 4rem, $padding-x: 1.5rem) {
+    @apply min-h-screen;
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: $padding-y $padding-x;
+}
+
+@mixin glass-panel($padding: 2.25rem) {
+    background: rgb(12 12 16 / 0%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    position: relative;
+    padding: $padding;
+    @apply rounded-[32px] shadow-[0_40px_90px_rgba(0,0,0,0.6)];
+}
+
+@mixin glass-panel-outline {
+    content: "";
+    @apply absolute inset-[1px] rounded-[30px] pointer-events-none;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@mixin glass-avatar($size: 96px) {
+    @apply rounded-full flex items-center justify-center text-white;
+    width: $size;
+    height: $size;
+    background: linear-gradient(140deg, #ff1639, #e50914, #4f46e5);
+    box-shadow: 0 20px 40px rgba(229, 9, 20, 0.4);
+}
+
+@mixin glass-pill {
+    @apply inline-flex items-center uppercase tracking-[0.3em] text-[0.75rem] rounded-full px-3 py-1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+@mixin glass-input {
+    @apply w-full rounded-[20px] border px-5 py-4 text-base text-white transition;
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(8, 8, 12, 0.75);
+}
+
+@mixin glass-input-focus {
+    @apply outline-none;
+    border-color: rgba(229, 9, 20, 0.7);
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+    transform: translateY(-1px);
+}
+
+@mixin glass-button {
+    @apply w-full border-0 rounded-full px-5 py-4 text-base font-semibold flex items-center justify-center gap-3 text-white cursor-pointer transition;
+    background: linear-gradient(120deg, #ff1639, #e50914, #b0060f);
+    box-shadow: 0 25px 45px rgba(229, 9, 20, 0.35);
+}
+
+@mixin glass-button-hover {
+    @apply transform;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 35px 55px rgba(229, 9, 20, 0.45);
+}
+
+@mixin glass-alert-base {
+    @apply flex items-center gap-3 rounded-[20px] px-5 py-4 text-[0.95rem];
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+@mixin glass-alert($text, $bg, $border) {
+    @include glass-alert-base;
+    color: $text;
+    background: $bg;
+    border: 1px solid $border;
+}
+
+@layer components {
+    .glass-panel {
+        @include glass-panel;
+    }
+
+    .glass-panel::before {
+        @include glass-panel-outline;
+    }
+
+    .glass-input {
+        @include glass-input;
+    }
+
+    .glass-input:focus {
+        @include glass-input-focus;
+    }
+
+    .glass-button {
+        @include glass-button;
+    }
+
+    .glass-button:hover {
+        @include glass-button-hover;
+    }
+
+    .glass-pill {
+        @include glass-pill;
+    }
+
+    .glass-alert {
+        @include glass-alert-base;
+    }
+
+    .glass-alert--success {
+        @include glass-alert(#6ee7b7, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.4));
+    }
+
+    .glass-alert--error {
+        @include glass-alert(#ff9b9b, rgba(229, 9, 20, 0.12), rgba(229, 9, 20, 0.4));
+    }
+}

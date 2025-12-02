@@ -1,0 +1,80 @@
+.netflix-header {
+  @apply sticky top-4 z-50 mx-auto mb-11 flex items-center justify-between px-8 py-4 w-full max-w-6xl rounded-full border;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgb(10 10 14 / 16%);
+  box-shadow: 0 25px 45px rgba(5, 5, 5, 0.35);
+  backdrop-filter: blur(16px);
+
+  .logo {
+    @apply text-netflix-red font-bold text-4xl m-0;
+  }
+
+  .header-center {
+    @apply flex items-center gap-8 mx-auto; 
+  }
+
+  .main-nav {
+    @apply flex items-center gap-4 ml-6;
+
+    .nav-link {
+      @apply text-white/70 hover:text-white;
+      @apply text-sm font-medium no-underline px-4 py-2 rounded-full;
+      @apply transition-colors duration-300 border border-transparent;
+
+      &.active {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+
+    .material-icons {
+      @apply text-white cursor-pointer p-2 rounded-full;
+      @apply transition-opacity duration-300;
+
+      &:hover {
+        @apply opacity-80 bg-white/10;
+      }
+    }
+  }
+
+  .search-form {
+    @apply flex items-center gap-2;
+
+    .search-input {
+      @apply bg-netflix-gray text-white px-4 py-2 rounded;
+      @apply border border-white/20 focus:border-white/40;
+      @apply outline-none transition-colors duration-300;
+
+      &::placeholder {
+        @apply text-white/50;
+      }
+    }
+
+    .search-btn {
+      @apply bg-netflix-red text-white px-4 py-2 rounded;
+      @apply border-0 cursor-pointer;
+      @apply flex items-center justify-center;
+      @apply transition-colors duration-300;
+
+      &:hover {
+        background-color: rgba(229, 9, 20, 0.8);
+      }
+
+      .material-icons {
+        @apply text-white;
+      }
+    }
+  }
+
+  .logout-button {
+    @apply flex items-center gap-2 text-sm font-medium no-underline;
+    @apply text-white/80 hover:text-white px-4 py-2 rounded-full border;
+    @apply border-white/20 bg-white/5 hover:bg-white/10;
+    @apply transition-colors duration-300;
+  }
+
+  .logout-button .material-icons {
+    @apply text-base;
+  }
+}

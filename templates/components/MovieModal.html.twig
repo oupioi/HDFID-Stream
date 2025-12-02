@@ -1,0 +1,61 @@
+<div class="movie-modal-overlay" 
+     data-modal-target="overlay" 
+     data-action="click->modal#closeOnOverlay">
+    <div class="movie-modal">
+        <button class="modal-close" data-action="click->modal#close">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <div class="modal-trailer">
+            <div class="trailer-container" data-modal-target="trailer">
+                <div class="trailer-placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
+                    </svg>
+                    <span>Trailer non disponible</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-info">
+            <div class="info-background">
+                <img data-modal-target="poster" src="" alt="Poster">
+            </div>
+            <div class="info-content">
+                <div class="info-card">
+                    <h2 class="movie-title" data-modal-target="title">Titre du film</h2>
+                    
+                    <div class="movie-meta">
+                        <span class="meta-item" data-modal-target="year">-</span>
+                        <span class="meta-item" data-modal-target="runtime">-</span>
+                        <span class="meta-item rating" data-modal-target="rating">-</span>
+                    </div>
+
+                    <div class="movie-genres" data-modal-target="genres"></div>
+
+                    <p class="movie-description" data-modal-target="description">
+                        Aucune description disponible.
+                    </p>
+
+                    <div class="movie-actions">
+                        <button class="action-btn primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                            </svg>
+                            Lecture
+                        </button>
+                        <button class="action-btn secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Ma liste
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

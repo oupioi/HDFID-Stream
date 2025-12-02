@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription {% endblock %}
+
+{% block body %}
+<div class="auth-page">
+    <div class="auth-background" aria-hidden="true"
+        style="background-image: url('{{ asset('images/background.jpg') }}');"></div>
+    <div class="auth-overlay">
+        <div class="auth-shell">
+            <div class="auth-card">
+                <div class="auth-card__header">
+                    <p class="auth-kicker">Activation rapide</p>
+                    <h1>Créer votre profil</h1>
+                    <p class="auth-subtitle">Quelques champs pour débloquer tout le catalogue.</p>
+                </div>
+
+                {{ form_start(registrationForm, {'attr': {'class': 'auth-form'}}) }}
+                {{ form_row(registrationForm.firstName, {'row_attr': {'class': 'auth-form__row'}}) }}
+                {{ form_row(registrationForm.lastName, {'row_attr': {'class': 'auth-form__row'}}) }}
+                {{ form_row(registrationForm.username, {'row_attr': {'class': 'auth-form__row'}}) }}
+                {{ form_row(registrationForm.email, {'row_attr': {'class': 'auth-form__row'}}) }}
+                {{ form_row(registrationForm.plainPassword.first, {'row_attr': {'class': 'auth-form__row'}}) }}
+                {{ form_row(registrationForm.plainPassword.second, {'row_attr': {'class': 'auth-form__row'}}) }}
+
+                <div class="auth-form__actions">
+                    <button class="auth-button" type="submit">
+                        <span>Lancer mon compte</span>
+                        <span class="material-icons" aria-hidden="true">trending_flat</span>
+                    </button>
+                </div>
+                {{ form_end(registrationForm) }}
+
+                <p class="auth-switch">Déjà membre ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

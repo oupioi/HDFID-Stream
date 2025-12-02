@@ -1,0 +1,29 @@
+<div class="movie-card" 
+     data-action="click->modal#open"
+     data-movie-title="{{ movie.titleText.text }}"
+     data-movie-description="{{ movie.plot.plotText.plainText|default('') }}"
+     data-movie-year="{{ movie.releaseYear.year|default('') }}"
+     data-movie-runtime="{{ movie.runtime.seconds|default('')|raw }}"
+     data-movie-rating="{{ movie.ratingsSummary.aggregateRating|default('') }}"
+     data-movie-poster="{{ movie.primaryImage.url|default('') }}"
+     data-movie-genres="{% if movie.genres is defined and movie.genres and movie.genres.genres is defined %}{% for genre in movie.genres.genres %}{{ genre.text }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"
+     data-movie-video-id="{% if movie.primaryVideos is defined and movie.primaryVideos and movie.primaryVideos.edges is defined and movie.primaryVideos.edges[0] is defined %}{{ movie.primaryVideos.edges[0].node.id|default('') }}{% endif %}">
+    {% if movie.primaryImage and movie.primaryImage.url %}
+        <img src="{{ movie.primaryImage.url }}" alt="{{ movie.titleText.text }}" class="movie-poster">
+    {% else %}
+        <div class="movie-poster placeholder">
+            <span>{{ movie.titleText.text }}</span>
+        </div>
+    {% endif %}
+    <div class="movie-info">
+        <h3 class="movie-title">{{ movie.titleText.text }}</h3>
+        <div>
+            {% if movie.releaseYear %}
+                <span class="movie-year">{{ movie.releaseYear.year }}</span>
+            {% endif %}
+            {% if movie.ratingsSummary and movie.ratingsSummary.aggregateRating %}
+                <span class="movie-rating">⭐ {{ movie.ratingsSummary.aggregateRating|number_format(1) }}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>

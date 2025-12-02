@@ -1,0 +1,38 @@
+.content-section {
+  @apply mb-12 px-8 mx-2 rounded-[30px] border;
+  border-color: rgba(255, 255, 255, 0.08);
+  background:  rgb(10 10 14 / 16%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+
+  .section-title {
+    @apply text-white text-2xl font-bold my-6;
+  }
+
+  .carousel {
+    @apply flex gap-5 overflow-x-auto pb-4;
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.netflix.gray') transparent;
+    scroll-snap-type: x proximity;
+
+    &::-webkit-scrollbar {
+      @apply h-2;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-netflix-gray rounded-full;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-transparent;
+    }
+
+    > * {
+      scroll-snap-align: start;
+    }
+  }
+
+  .no-content {
+    @apply text-white/50 text-center py-8;
+  }
+}

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$netflix-red: #E50914;
+$netflix-black: #141414c5;
+$netflix-gray: #2F2F2F;
+$netflix-background: linear-gradient(-90deg, #0050a4 0%, #000050 50%, #000050 100%);
+
+@layer base {
+  body {
+    background: $netflix-background;
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+  }
+}
+
+@import "components/glass";
+@import "components/header";
+@import "components/movie-card";
+@import "components/carousel";
+@import "components/search-modal";
+@import "components/movie-modal";
+@import "components/account";
+@import "components/auth";

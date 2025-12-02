@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Films {% endblock %}
+
+{% block body %}
+<div class="min-h-screen">
+    <twig:Header currentRoute="app_films" />
+
+    <section class="content-section">
+        <h2 class="section-title">Films populaires</h2>
+        <div class="carousel">
+            {% for movie in popularMovies %}
+            <twig:MovieCard :movie="movie" />
+            {% else %}
+            <p class="no-content">Aucun film disponible.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Films les mieux notés</h2>
+        <div class="carousel">
+            {% for movie in topRatedMovies %}
+            <twig:MovieCard :movie="movie" />
+            {% else %}
+            <p class="no-content">Aucun film disponible.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Films à venir</h2>
+        <div class="carousel">
+            {% for movie in upcomingMovies %}
+            <twig:MovieCard :movie="movie" />
+            {% else %}
+            <p class="no-content">Aucun film à venir.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

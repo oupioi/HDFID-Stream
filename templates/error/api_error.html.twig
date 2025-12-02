@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur API{% endblock %}
+
+{% block body %}
+    <section class="min-h-screen bg-[#050505] flex items-center justify-center px-4 py-12">
+        <article class="glass-panel w-full max-w-lg">
+            <div class="mb-6">
+                <span class="glass-pill mb-3 inline-flex">Service indisponible</span>
+                <h1 class="text-2xl font-semibold text-white mb-2">Notre API ne fonctionne plus 🫣</h1>
+                <p class="text-white/70">Nous n'avons pas réussi à récupérer les dernières données. Réessayez dans quelques instants.</p>
+            </div>
+
+            <div class="glass-alert glass-alert--error mb-8" role="alert">
+                <strong class="font-semibold">Détail :</strong>
+                <span>{{ message }}</span>
+            </div>
+
+            <div class="space-y-3">
+                <a href="{{ path('app_logout') }}" class="glass-button">
+                    Se déconnecter
+                </a>
+                <p class="text-center text-white/60 text-sm">Si le problème persiste, vérifiez votre connexion ou revenez plus tard.</p>
+            </div>
+        </article>
+    </section>
+{% endblock %}

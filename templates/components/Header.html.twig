@@ -1,0 +1,30 @@
+<header class="netflix-header" data-controller="search">
+    <img src="https://www.hautsdefrance-id.fr/wp-content/uploads/2025/02/logo_hdfid_blue.svg" alt="Logo ID"
+        class="header-logo" width="39" height="39" />
+    <div class="flex items-center mx-auto max-w-6xl">
+        <div class="header-center">
+            <nav class="main-nav">
+                <span class="material-icons cursor-pointer" data-action="click->search#openModal">search</span>
+                <a href="{{ path('app_home') }}" class="nav-link {{ currentRoute == 'app_home' ? 'active' : '' }}">
+                    Accueil
+                </a>
+                <a href="{{ path('app_movies') }}" class="nav-link {{ currentRoute == 'app_movies' ? 'active' : '' }}">
+                    Films
+                </a>
+                <a href="{{ path('app_series') }}" class="nav-link {{ currentRoute == 'app_series' ? 'active' : '' }}">
+                    Séries
+                </a>
+                <a href="{{ path('app_account') }}"
+                    class="nav-link {{ currentRoute == 'app_account' ? 'active' : '' }}">
+                    Mon compte
+                </a>
+            </nav>
+        </div>
+    </div>
+    {% if app.user %}
+    <a href="{{ path('app_logout') }}" class="logout-button" title="Se déconnecter">
+        <span class="material-icons" aria-hidden="true">logout</span>
+        <span class="logout-label">Déconnexion</span>
+    </a>
+    {% endif %}
+</header>
